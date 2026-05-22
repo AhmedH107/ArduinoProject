@@ -222,5 +222,5 @@ int main() {
 }
 
 /*
-CAN Bus Protocol Tutorial gives an overview of the ISO 11898-1 and ISO 11898-2 controller area network standards
+
 */
