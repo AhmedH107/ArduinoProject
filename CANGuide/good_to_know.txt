@@ -1,0 +1,42 @@
+scp -r C:\Users\ahadi\Desktop\myproject guide@rpi4.local:~/
+CAN Bus Protocol ISO 11898-1 and ISO 11898-2. (2024-2026 ?)
+SocketCAN.
+
+Set the bitrate and bring the interface up.
+
+loopback for testing?
+
+breaks CAN (and Variables?) into array nodes or array unsigned nodes
+
+linked list?
+
+static _CANSYM_TX_T *tx_chain_head = NULL; 
+static _CANSYM_RX_T *rx_chain_head = NULL; 
+
+void _CANSYM_TX_ADD(_CANSYM_TX_T *CanSymTx) {
+    CanSymTx->Next = tx_chain_head; // Point the new block to the old head
+    tx_chain_head = CanSymTx;       // Make this new block the new front of line
+}
+
+CAN_INTERFACE_STRUCT CAN[4] = {
+    { .Port = "can0", spi_func() },
+    { .Port = "can1", spi_func() },
+    { .Port = "can2", spi_func() },
+    { .Port = "can3", spi_func() }
+}; //
+
+static int get_fd_from_port_name(const char *port_name, int can0_fd, int can1_fd) {
+    if (strcmp(port_name, "can0") == 0) return can0_fd;
+    if (strcmp(port_name, "can1") == 0) return can1_fd;
+    return -1;
+} 
+
+
+
+# Bring up CAN 0 at 250k baudrate
+sudo ip link set can0 type can bitrate 250000
+sudo ip link set can0 up
+
+# Bring up CAN 1 at 250k baudrate
+sudo ip link set can1 type can bitrate 250000
+sudo ip link set can1 up

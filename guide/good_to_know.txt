@@ -1,3 +1,8 @@
 scp -r C:\Users\ahadi\Desktop\myproject guide@rpi4.local:~/
 CAN Bus Protocol ISO 11898-1 and ISO 11898-2. (2024-2026 ?)
 SocketCAN.
+
+Set the bitrate and bring the interface up.
+
+loopback for testing?
+

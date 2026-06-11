@@ -4,8 +4,6 @@
 #undef BOOL
 extern void MAINMODULE_RunOnce(void);
 
-// Display
-
 #include <stdio.h>
 #include <stdint.h>
 #include <stdlib.h>
@@ -91,13 +89,13 @@ void max7219_send_to_module(int module, uint8_t reg, uint8_t data) {
 }
 
 void max7219_init(void) {
-    max7219_send(REG_DISPLAYTEST, 0x00); // display test off
-    max7219_send(REG_DECODE_MODE, 0x00); // no BCD decode
-    max7219_send(REG_SCAN_LIMIT, 0x07);  // use all 8 rows
-    max7219_send(REG_INTENSITY, 0x01);   // brightness low: 0x00 to 0x0F
-    max7219_send(REG_SHUTDOWN, 0x01);    // normal operation
+    max7219_send(REG_DISPLAYTEST, 0x00); 
+    max7219_send(REG_DECODE_MODE, 0x00); 
+    max7219_send(REG_SCAN_LIMIT, 0x07); 
+    max7219_send(REG_INTENSITY, 0x01);   
+    max7219_send(REG_SHUTDOWN, 0x01);    
 
-    // clear all rows
+  
     for (uint8_t row = 1; row <= 8; row++) {
         max7219_send(row, 0x00);
     }
@@ -134,9 +132,9 @@ void sync_spi_led(void* var, int module) {
     // SPI?
     DANFOSS_BOOL current_val = *(DANFOSS_BOOL*)var;
     
-    //Change later to CAN bus.
+    //Change later to CAN bus if lucky.
     if (current_val == 1) {
-        set_one_dot(module, 0, 0);
+        set_one_dot(module, 0, 0); 
     } else {
         clear_display();
     }
